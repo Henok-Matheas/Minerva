@@ -1,2 +1,16 @@
 pillow is required.
 security of uploaded files.
+how to set maximum upload size in django.
+Enable the user to upload the thumbnail for the book or the video.
+null = False for both the host and file fields for the material class.
+a way to include thumbnail deletion. I think the dudes video has a part that tackles that and the deletion.
+google for some way to get the thumbnail of a file.
+password isn't being encoded. why the fuck not??
+how to get thumbnail from an uploaded file?
+make a separate folder for the thumbnail and the actual file, maybe.
+the actual files need to be deleted.
+
+find a way to include pre-engineering.
+- what if we establish a separate pre-engineering school, and common course school. We can then do this for the second year first semester too.
+- the other method is: not linking the first semester, and second semester to year one. in addition to not applying semster one to year two.
+- we can also give the first year it's own name, which is pre-engineering. We can also give second year first semester it's own name.
