@@ -17,7 +17,7 @@ class School(models.Model):
 class Year(models.Model):
     """this contains details about the particular school in the AAiT campus."""
     name = models.IntegerField()
-    school = models.ForeignKey(School, on_delete = models.CASCADE,null=True)
+    school = models.ManyToManyField(School)
     description=models.TextField()
 
     class Meta:
@@ -29,6 +29,7 @@ class Year(models.Model):
 SEMESTER_CHOICES = (
     ("1", "1"),
     ("2", "2"),
+    ("pre","pre-engineering"),
 )
 
 class Semester(models.Model):
@@ -47,21 +48,16 @@ class Semester(models.Model):
     def __str__(self):
         return (str(self.name))
 
-
-
 class User(AbstractUser):
-     school = models.ForeignKey(School, on_delete = models.SET_NULL ,null = True)
-     year = models.ForeignKey(Year, on_delete = models.SET_NULL ,null = True)
-     semester  = models.ForeignKey(Semester, on_delete = models.SET_NULL ,null = True)
+     school = models.ForeignKey(School, on_delete = models.SET_NULL ,null = True, default= None)
+     year = models.ForeignKey(Year, on_delete = models.SET_NULL ,null = True, default= None)
+     semester  = models.ForeignKey(Semester, on_delete = models.SET_NULL ,null = True, default= None)
 
      USERNAME_FIELD = "username"
      REQUIRED_FIELDS = []  # Email & Password are required by default.
 
      def __str__(self):
-        return self.first_name + self.last_name
-
-
-
+        return self.username
 
 class Course(models.Model):
     """this contains details about the particular school in the AAiT campus."""
@@ -81,16 +77,21 @@ class Course(models.Model):
 
 class Material(models.Model):
     """this contains details about the particular school in the AAiT campus."""
+    host = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
     name = models.CharField(max_length=50)
-    author = models.ForeignKey(User, on_delete = models.CASCADE, null=False)
-    object = models.FileField(null = True)
-    link = models.URLField(null = True)
-    type = models.CharField(max_length=50)
-    course = models.ForeignKey(Course, on_delete = models.CASCADE, null= False)
+    author = models.CharField(max_length = 50)
     description=models.TextField()
-
+    course = models.ForeignKey(Course, on_delete = models.CASCADE, null= False)
+    thumbnail = models.ImageField(upload_to = "thumbnails",null = True)
+    file = models.FileField(upload_to = "files",null = True)
+    type = models.CharField(max_length=50)
     class Meta:
         ordering = ['-name']
+
+    def delete(self, *args, **kwargs):
+        self.thumbnail.delete()
+        self.file.delete()
+        return super().delete(*args, **kwargs)
 
     def __str__(self):
         return (self.name)

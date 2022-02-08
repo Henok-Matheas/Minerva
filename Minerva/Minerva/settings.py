@@ -126,6 +126,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-MATERIAL_URL = 'materials'
+MEDIA_URL = '/materials/'
 
-MATERIAL_ROOT = os.path.join(BASE_DIR, 'materials')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'materials')
