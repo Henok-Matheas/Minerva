@@ -1,6 +1,8 @@
 pillow is required.
 security of uploaded files.
 how to set maximum upload size in django.
+
+
 Enable the user to upload the thumbnail for the book or the video.
 null = False for both the host and file fields for the material class.
 a way to include thumbnail deletion. I think the dudes video has a part that tackles that and the deletion.
@@ -10,7 +12,26 @@ how to get thumbnail from an uploaded file?
 make a separate folder for the thumbnail and the actual file, maybe.
 the actual files need to be deleted.
 
+download functionality.
+
+thumbnailing also needs to decrease the images size so that the load time isn't as large. probably need a thumbnailing method and
+some libraries.
+
+django validation
+
 find a way to include pre-engineering.
 - what if we establish a separate pre-engineering school, and common course school. We can then do this for the second year first semester too.
 - the other method is: not linking the first semester, and second semester to year one. in addition to not applying semster one to year two.
 - we can also give the first year it's own name, which is pre-engineering. We can also give second year first semester it's own name.
+
+
+today:
+finish the upload page, either make the user upload a thumbnail or just the file.
+the user page
+the register functionality
+the login and logout functionality
+the course page.
+include number of downloads fields
+discuss with yada on some of the features of the upload and user pages, they need to be removed.
+
+download counter for the materials, which displays the most downloaded ones.
