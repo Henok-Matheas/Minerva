@@ -1,15 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'main.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block content %}
+<main class="container">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Videos</a>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div>
+        <h1>Recently Viewed</h1>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="MultiCarousel" data-items="2,3,4,5" data-slide="1" id="MultiCarousel" data-interval="1000">
+                    <div class="MultiCarousel-inner">
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="pad15">
+                                <p class="lead">Multi Item Carousel</p>
+                                <p>₹ 1</p>
+                                <p>₹ 6000</p>
+                                <p>50% off</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary leftLst">
+                        << </button>
+                            <button class="btn btn-primary rightLst">></button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">All Courses</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Course
+                        </a>
 
-<body>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Course 1</a></li>
 
-</body>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div>
+            <h1>Top Rated</h1>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="MultiCarousel" data-items="2,3,4,5" data-slide="1" id="MultiCarousel"
+                        data-interval="1000">
+                        <div class="MultiCarousel-inner">
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="pad15">
+                                    <p class="lead">Multi Item Carousel</p>
+                                    <p>₹ 1</p>
+                                    <p>₹ 6000</p>
+                                    <p>50% off</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary leftLst">
+                            << /button>
+                                <button class="btn btn-primary rightLst">></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
 
-</html>
+{% endblock %}

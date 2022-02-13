@@ -85,6 +85,10 @@ class Material(models.Model):
     thumbnail = models.ImageField(upload_to = "thumbnails",null = True)
     file = models.FileField(upload_to = "files",null = True)
     type = models.CharField(max_length=50)
+    rating = models.IntegerField(null = True)
+
+    def addRating(self,rating):
+        self.rating += rating
     class Meta:
         ordering = ['-name']
 
