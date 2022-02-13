@@ -104,7 +104,7 @@ class Material(models.Model):
 
 class Review(models.Model):
     host = models.ForeignKey(User, on_delete = models.CASCADE, null=False)
-    material = models.ForeignKey(Material, on_delete = models.CASCADE, null=True)
+    material = models.ForeignKey(Material, on_delete = models.CASCADE, null=True, related_name='reviews')
     rating = models.IntegerField()
     review = models.TextField()
 

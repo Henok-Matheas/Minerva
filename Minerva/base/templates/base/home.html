@@ -13,11 +13,11 @@
     <p>oy Nigger</p>
     {% for material in materials %}
     <p>{{material.host}}</p>
-    <p>{{material.name}}</p>
+    <p><a href="{% url 'material' material.id %}">{{material.name}}</a></p>
     <p>{{material.author}}</p>
     <p>{{material.description}}</p>
     <p>{{material.course}}</p>
-    <a href="{{material.file.url}}"><img src="{{material.thumbnail.url}}" alt="this is the books img"></a>
+    <a href="{{material.file.url}}"><img src="" alt="this is the books img"></a>
     {% endfor %}
 </body>
 

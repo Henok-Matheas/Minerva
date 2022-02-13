@@ -64,7 +64,21 @@ def registerPage(request):
             messages.error(request, "An error occurred during registration")
 
     return render(request, "base/register.html", {"form": form})
+    
+def material(request, pk):
+    material = Material.objects.get(id = pk)
+    reviews = material.reviews.all()
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.instance.host = request.user
+            form.instance.material = material
+            form.save()
+            return redirect('home')
 
+    context = {'material': material, 'form': form, 'reviews':reviews}
+    return render(request, 'base/material.html', context)
 
 # @login_required(login_url="/login")
 def upload(request):
