@@ -1,18 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'main.html' %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<!-- <div id="site-border-left"></div>
+    <div id="site-border-right"></div>
+    <div id="site-border-top"></div>
+    <div id="site-border-bottom"></div> -->
+<header>
+    <nav class="navbar  navbar-inverse">
+        <div class="container">
+            <ul class="nav navbar-nav ">
+                <li><a href="./home.html" title="" style="color: black; font-size: xx-large;">Home</a></li>
+                <li><a href="./about.html" title="" style="color: black; font-size: xx-large;">About</a></li>
+                <li><a href="./contact.html" title="" style="color: black; font-size: xx-large;">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-<body>
-    <form method="post">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Register</button>
-    </form>
-</body>
+<div class="section-container">
+    <!-- <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./images/work001-04.jpg')"> -->
+    <div class="container">
+        <div class="template-example">
+            <h3>Enter your</h3>
+            <form>
 
-</html>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <label for="name">First Name:</label>
+                            <input type="text" class="form-control" id="name" name="firstname"
+                                placeholder="Given name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <label for="name">Last Name:</label>
+                            <input type="text" class="form-control" id="name" name="lastname"
+                                placeholder="Father's name" />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="someone@example.com">
+                </div>
+                <div class="input-group">
+                    <label for="id">ID:</label>
+                    <input type="text" class="form-control" id="id" name="username" placeholder="aaa/nnnn/nn" />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-group ">
+                            <label>School:</label>
+                            <select class="form-control" name="school">
+                                <option>Software</option>
+                                <option>Mechanical</option>
+                                <option>Electrical</option>
+                                <option>Civil</option>
+                                <option>Biomedical</option>
+                                <option>Chemical</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <label>Year:</label>
+                            <select class="form-control" name="year">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <label>Semester:</label>
+                            <select class="form-control" name="semester">
+                                <option>1st</option>
+                                <option>2nd</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class=" input-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd" name="password1" placeholder="8-characters" />
+                </div>
+                <div class="input-group">
+                    <label for="pwd">Confirm password:</label>
+                    <input type="password" class="form-control" id="pwd" name="password2" placeholder="8-characters" />
+                </div>
+                <br>
+                <div class="input-group">
+                    <label for="signup"></label>
+                    <input type="submit" class="btn btn-primary btn-lg" id="signup" action="#" name=" submit "
+                        value="Sign Up " />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -7,7 +7,7 @@ Enable the user to upload the thumbnail for the book or the video.
 null = False for both the host and file fields for the material class.
 a way to include thumbnail deletion. I think the dudes video has a part that tackles that and the deletion.
 google for some way to get the thumbnail of a file.
-password isn't being encoded. why the fuck not??
+password isn't being encoded. why the not??
 how to get thumbnail from an uploaded file?
 make a separate folder for the thumbnail and the actual file, maybe.
 the actual files need to be deleted.
@@ -35,3 +35,11 @@ include number of downloads fields
 discuss with yada on some of the features of the upload and user pages, they need to be removed.
 
 download counter for the materials, which displays the most downloaded ones.
+
+the courses need to be from the same semester as the user.
+custom user password hashing or encoding
+HOW TO HASH PASSWORD FOR A CUSTOM USER.
+if it can't generate thumbnail we need default thumbnails for book,video and one for others.
+
+
+the courses tabbed content, what if I display the materials whose course field are indicated on the select course

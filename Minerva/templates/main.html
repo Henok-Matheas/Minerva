@@ -8,84 +8,28 @@
     <link rel="stylesheet " href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css "
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p " crossorigin="anonymous " />
     <link rel="stylesheet " href="{% static 'styles/bootstrap.min.css' %}">
+    <link href="{% static 'styles/main.3f6952e4.css' %}" rel="stylesheet">
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     {% block content %}
 
     {% endblock content %}
     <br><br>
+    {% include 'footer.html' %}
 
-    <footer>
-        <div class="container footer-content ">
-            <div class="row">
-                <div class="col">
-                    <h3>Minerva</h3>
-                    <p>Minerva is a platform designed mainly for university students to help them in their studies, by
-                        gathering all the resources needed from the students themselves.</p>
-                    <!-- <ul class=" socials ">
-                        <li><a href="# "><i class="fa fa-facebook "></i></a></li>
-                        <li><a href="# "><i class="fa fa-twitter "></i></a></li>
-                        <li><a href="# "><i class="fa fa-google-plus "></i></a></li>
-                        <li><a href="# "><i class="fa fa-youtube "></i></a></li>
-                        <li><a href="# "><i class="fa fa-linkedin-square "></i></a></li>
-                    </ul> -->
-                </div>
-                <div class="col">
-                    <h3>Contact</h3>
-                    <p>
-                        <a class="text-white text-decoration-none " href=" mailto: Minerva.fhp@gmail.com ">
-                            <i class="fas fa-envelope mr-3 "></i> Minerva.fhp@gmail.com
-                    </p>
-                    </a>
-                    <p>
-                        <i class="fas fa-phone mr-3 "></i> +251 934 215094 <br> + 251 922 463944
-                    </p>
 
-                </div>
-                <div class=" col ">
-                    <h3>Developers</h3>
-                    <ul style="list-style: none; ">
-                        <li>
-                            <a class="text-white text-decoration-none " href=" ">Henok Matheas</a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none " href=" ">Kaleab Nigusse</a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none " href=" ">Mussie Asamere</a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none "
-                                href="https://yared04.github.io/UGR-7066-12/ ">Yared Tegegn</a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none " href=" ">Zeraruck Muluneh</a>
-                        </li>
-                        <li>
-                            <a class="text-white text-decoration-none " href=" ">Zerihun Moges</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom ">
-            <p>2022 Copyright &copy; <a href="# ">Minerva</a>
-            </p>
-            <!-- <div class="footer-menu ">
-                <ul class="f-menu ">
-                    <li><a href="# ">Home</a></li>
-                    <li><a href=" ">About</a></li>
-                    <li><a href=" ">Contact</a></li>
-                    <li><a href=" ">Blog</a></li>
-                </ul>
-            </div> -->
-        </div>
-
-    </footer>
     <script src="{% static 'js/carousel.js' %}"></script>
+    <script src="{% static 'js/main.70a66962.js' %}"></script>
 
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

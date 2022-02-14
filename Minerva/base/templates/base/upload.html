@@ -1,11 +1,13 @@
 {% extends 'main.html' %}
 {% block content %}
+
 <style>
   body {
     background: #00B4DB;
     background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
     background: linear-gradient(to right, #0083B0, #00B4DB);
   }
+
 
   .rounded-lg {
     border-radius: 1rem;
@@ -21,35 +23,34 @@
       <div class="col-lg-5 mx-auto">
         <div class="p-5 bg-white shadow rounded-lg">
           <h2>Upload File</h2>
-          <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png" alt="" width="150"
-            class="d-block mx-auto mb-4 rounded-pill">
-          <form accept-charset="UTF-8" action="https://getform.io/f/{your-form-endpoint-goes-here}" method="POST"
-            target="_blank">
+          <!-- <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png" alt="" width="150"
+            class="d-block mx-auto mb-4 rounded-pill"> -->
+          <p>{{user}}</p>
+          <form accept-charset="UTF-8" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="form-group">
-              <label for="exampleInputName">Title</label>
-              <input type="text" name="fullname" class="form-control" id="exampleInputName" required="required">
+              <label for="name">Title</label>
+              <input type="text" name="name" class="form-control" id="name">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">File Type</label>
-              <select class="form-control dropdown-toggle" id="exampleFormControlSelect1" name="platform"
-                required="required">
-                <option>Text File</option>
-                <option>Video </option>
-                <option>Audio</option>
+              <label for="author">Author</label>
+              <input type="text" name="author" class="form-control" id="author">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="course">Course</label>
+              <select class="form-control dropdown-toggle" id="course" name="course" required="required">
+                {% for course in courses %}
+                <option value="{{course.id}}">{{course}}</option>
+                {% endfor %}
               </select>
             </div>
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Course</label>
-              <select class="form-control dropdown-toggle" id="exampleFormControlSelect1" name="platform"
-                required="required">
-                <option>Course</option>
-
-              </select>
-            </div>
-
             <div class="custom-file overflow rounded-pill mb-4">
               <label for="customFile" class="custom-file-label rounded-pill">Choose File</label>
-              <input id="customFile" type="file" class="custom-file-input rounded">
+              <input id="customFile" type="file" name="file" class="custom-file-input rounded">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -60,4 +61,12 @@
     </div>
   </div>
 </section>
+<!-- <form method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{ form.as_p }}
+  <div class="custom-file overflow rounded-pill mb-4">
+    <label for="customFile" class="custom-file-label rounded-pill">Choose File</label>
+    <input id="customFile" type="file" name="document" class="custom-file-input rounded">
+  </div>
+  <button type="submit">Register</button>
+</form> -->
 {% endblock %}

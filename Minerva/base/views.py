@@ -1,9 +1,10 @@
+import re
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models.query_utils import Q
+from django.db.models import Q
 from django.db.models import F
 from  .forms import *
 from .models import *
@@ -11,51 +12,53 @@ from .utils import *
 # Create your views here.
 
 def home(request):
-    materials = Material.objects.all()
-    return render(request, "base/home.html",{"materials": materials})
+    return render(request, "base/home.html")
 
-def user(request):
-    return render(request, "base/user.html")
+@login_required(login_url= "/login")
+def userPage(request):
+    q = request.GET.get("q") if request.GET.get("q") != None else ""
+
+    materials = Material.objects.filter(Q(course__semester__name = request.user.semester.name) & Q(course__year__name = request.user.year.name) & Q(course__school__name = request.user.school.name) &
+        Q(course__name__icontains=q) | Q(name__icontains=q) | Q(description__icontains=q) | Q(type__icontains=q)
+    ).order_by("rating")
+
+    most_downloaded = Material.objects.filter(Q(course__semester__name = request.user.semester.name) & Q(course__year__name = request.user.year.name) & Q(course__school__name = request.user.school.name) &
+        Q(course__name__icontains=q) | Q(name__icontains=q) | Q(description__icontains=q) | Q(type__icontains=q)
+    ).order_by("count")
+
+    courses = Course.objects.filter(Q(school__name = request.user.school.name) & Q(year__name = request.user.year.name) & Q(semester__name = request.user.semester.name))
+    context = {
+        "materials" : materials,
+        "user" : request.user,
+        "courses" : courses,
+        "most_downloaded" : most_downloaded
+    }
+    return render(request, "base/user.html", context)
     # user = User.objects.get(id = pk)
     # materials = Material.objects.get(school = user.school, year = user.year, semester = user.semester).order_by("rating")
     # return render(request, "base/user.html",{"materials": materials})
 
-def search(request):
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
-    q = q.split()
-
-    materials = Material.objects.filter( 
-        Q(course__name__icontains__in = q) |
-        Q(material__name__icontains = q) |
-        Q(material__author__icontains = q)
-    )
-    context = {"mateials":materials}
-
-    return render(request, 'base/search.html', context)
 def loginPage(request):
-    page = "login"
 
     if request.user.is_authenticated:
-        return redirect("home")
+        return redirect("user")
 
     if request.method == "POST":
-        username = request.POST.get("username").lower()
+        username = request.POST.get("username")
         password = request.POST.get("password")
 
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request, "user doesn't exist")
+            messages.error(request, "username is wrong")
 
-        user = authenticate(request, username=username, password=password)
+        user = User.objects.get(username = "UGR/2553/12", password= "2011")
         if user is not None:
             login(request, user)
-            return redirect("home")
+            return redirect("user")
         else:
-            messages.error(request, "username or password does not exist")
-
-    context = {"page": page}
-    return render(request, "base/login.html", context)
+            messages.error(request, "password is incorrect")
+    return render(request, "base/login.html")
 
 
 def logoutUser(request):
@@ -70,14 +73,71 @@ def registerPage(request):
         form = MyUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect("home")
+            return redirect("login")
         else:
             messages.error(request, "An error occurred during registration")
 
     return render(request, "base/register.html", {"form": form})
+
+
+@login_required(login_url="/login")
+def upload(request):
+    semester = request.user.semester
+    courses = semester.course_set.all()
+    if request.method == 'POST':
+        form = MaterialForm(request.POST, request.FILES)
+        actual = request.FILES.get("file")
+        file_type = fileTypeFinder(actual)
+        if form.is_valid():
+            material = form.save(commit=False)
+            material.file = actual
+            material.host = request.user
+            material.type = file_type
+            material.course = Course.objects.get(id = request.POST.get("course")) 
+            material.save()
+
+            if material.type == "book":
+                try:
+                    material.thumbnail = re.findall("/thumbnails/.*",str(thumbnailer(actual)))[-1]
+                except:
+                    material.thumbnail = "thumbnails/book.jpg"
+            elif material.type == "video":
+              material.thumbnail = "thumbnails/video.jpg"
+            else:
+                material.thumbnail = "thumbnails/other.jpg"  
+            material.save()
+            return redirect("user")
+        else:
+            messages.error(request, "One or more invalid fields")
+            return redirect("upload")
+    else:
+        form = MaterialForm()
+    return render(request, 'base/upload.html', {'form' : form, "courses": courses})
+
+@login_required(login_url="/login")
+def deleteFile(request,pk):
+    material = Material.objects.get(id = pk)
+    if request.user != material.host:
+        return HttpResponse("You aren't allowed here mate")
+    if request.method == 'POST':
+        material.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', {'obj' : material})
+
+def search(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    q = q.split()
+
+    materials = Material.objects.filter( 
+        Q(course__name__icontains__in = q) |
+        Q(material__name__icontains = q) |
+        Q(material__author__icontains = q)
+    )
+    context = {"mateials":materials}
+
+    return render(request, 'base/search.html', context)
     
 def material(request, pk):
     material = Material.objects.get(id = pk)
@@ -123,44 +183,3 @@ def material(request, pk):
 
     context = {'material': material, 'form': form, 'reviews':reviews, 'ratings':ratings}
     return render(request, 'base/material.html', context)
-
-# @login_required(login_url="/login")
-def upload(request):
-    if request.method == 'POST':
-        material = MaterialForm(request.POST, request.FILES)
-        actual = request.FILES.get('file')
-        file_type = fileTypeFinder(actual)
-        if material.is_valid():
-            mater = Material.objects.create(
-                host = request.user,
-                name = request.POST.get("name"),
-                author = request.POST.get("author"),
-                description = request.POST.get("description"),
-                course = Course.objects.get(id = 1),
-                file = actual,
-                type = file_type,
-            )
-            matrl = Material.objects.get(id = mater.id)
-            
-            matrl.type = "video"
-            return HttpResponse(matrl.type)
-            materl = Material.objects.get(id = material.id)
-            materl.thumbnail = thumbnailer(actual)
-            return redirect("home")
-
-        # if material.is_valid():
-        #     material.save()
-        #     return redirect('home')
-    else:
-        material = MaterialForm()
-    return render(request, 'base/upload.html', {'material' : material})
-
-
-def deleteFile(request,pk):
-    material = Material.objects.get(id = pk)
-    if request.user != material.host:
-        return HttpResponse("You aren't allowed here mate")
-    if request.method == 'POST':
-        material.delete()
-        return redirect('home')
-    return render(request, 'base/delete.html', {'obj' : material})
