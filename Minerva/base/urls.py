@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.urls import path
 from . import views
 from django.conf import settings
@@ -11,6 +12,7 @@ urlpatterns = [
      path("register/", views.registerPage, name="register"),
      path("upload/", views.upload, name="upload"),
      path("delete_file/<str:pk>", views.deleteFile, name="delete_file"),
+     path("materials/<str:pk>", views.material, name="material") 
 ]
 
 if settings.DEBUG:
