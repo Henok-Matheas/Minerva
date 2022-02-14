@@ -1,0 +1,5 @@
+python3
+django
+pillow
+thumb-gen  4.0.1 
+preview-generator[all]

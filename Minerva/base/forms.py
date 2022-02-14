@@ -11,7 +11,7 @@ class MaterialForm(forms.ModelForm):
     class Meta:
         model = Material
         fields = "__all__"
-        exclude = ["host", "thumbnail", "type"]
+        exclude = ["host", "thumbnail","course", "type", "count", "rating"]
 
 class MyUserCreationForm(UserCreationForm):
     class Meta:

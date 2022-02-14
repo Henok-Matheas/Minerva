@@ -5,114 +5,70 @@
     <div>
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" href="#">All</a>
+                <a class="nav-link active" href="{% url 'user' %}">All</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Books</a>
+                <a class="nav-link" href="{% url 'user' %}?q={{'book'}}">Books</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Videos</a>
+                <a class="nav-link" href="{% url 'user' %}?q={{'video'}}">Videos</a>
+            </li>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Course
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                        {% for course in courses %}
+                        <li>
+                            <a class="dropdown-item" href="{% url 'user' %}?q={{course.name}}">{{course.name}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+            </ul>
             </li>
         </ul>
     </div>
     <br>
     <div>
-        <h1>Recently Viewed</h1>
+        <h1>Most Downloaded</h1>
         <hr>
         <div class="container">
             <div class="row">
                 <div class="MultiCarousel" data-items="2,3,4,5" data-slide="1" id="MultiCarousel" data-interval="1000">
                     <div class="MultiCarousel-inner">
+                        {% for material in most_downloaded %}
                         <div class="item">
                             <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
+                                <a href="#">
+                                    <div id="content">
+                                        <img src="{{material.thumbnail.url}}" alt="file image" width="150px">
+                                        <br>
+                                        <p class="lead">{{material.name}}</p>
+                                        <p>Author: &nbsp; {{material.author}}</p>
+                                        <p>{{material.}}</p>
+                                    </div>
+                                </a>
+
+
+                                <div class="d-grid gap-2 d-md-block">
+                                    <a href="{{material.file.url}}" download></a>
+                                    <button class="btn-sm btn-primary" type="button">Download</button>
+                                    </a>
+                                    <a href="{{material.file.url}}"></a>
+                                    <button class="btn-sm btn-primary" type="button">preview</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="pad15">
-                                <p class="lead">Multi Item Carousel</p>
-                                <p>₹ 1</p>
-                                <p>₹ 6000</p>
-                                <p>50% off</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <button class="btn btn-primary leftLst">
-                        << </button>
+                        < </button>
                             <button class="btn btn-primary rightLst">></button>
                 </div>
             </div>
-        </div>
-        <div>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">All Courses</a>
-                </li>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Select Course
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Course 1</a></li>
-
-                        </ul>
-                    </div>
-                </li>
-            </ul>
         </div>
         <br>
         <div>
@@ -123,73 +79,34 @@
                     <div class="MultiCarousel" data-items="2,3,4,5" data-slide="1" id="MultiCarousel"
                         data-interval="1000">
                         <div class="MultiCarousel-inner">
+                            {% for material in most_downloaded %}
                             <div class="item">
                                 <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
+                                    <a href="#">
+                                        <div id="content">
+                                            <img src="{{material.thumbnail.url}}" alt="file image" width="150px">
+                                            <br>
+                                            <p class="lead">{{material.name}}</p>
+                                            <p>Author: &nbsp; {{material.author}}</p>
+                                            <p>{{material.}}</p>
+                                        </div>
+                                    </a>
+
+
+                                    <div class="d-grid gap-2 d-md-block">
+                                        <a href="{{material.file.url}}" download></a>
+                                        <button class="btn-sm btn-primary" type="button">Download</button>
+                                        </a>
+                                        <a href="{{material.file.url}}"></a>
+                                        <button class="btn-sm btn-primary" type="button">preview</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="pad15">
-                                    <p class="lead">Multi Item Carousel</p>
-                                    <p>₹ 1</p>
-                                    <p>₹ 6000</p>
-                                    <p>50% off</p>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                         <button class="btn btn-primary leftLst">
-                            << /button>
+                            < </button>
                                 <button class="btn btn-primary rightLst">></button>
                     </div>
                 </div>

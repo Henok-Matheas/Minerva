@@ -1,24 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "main.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block content %}
 
-<body>
-    <p>Hello Mate</p>
-    <p>oy Nigger</p>
-    {% for material in materials %}
-    <p>{{material.host}}</p>
-    <p><a href="{% url 'material' material.id %}">{{material.name}}</a></p>
-    <p>{{material.author}}</p>
-    <p>{{material.description}}</p>
-    <p>{{material.course}}</p>
-    <a href="{{material.file.url}}"><img src="" alt="this is the books img"></a>
-    {% endfor %}
-</body>
+<body class="minimal">
+    <div id="site-border-left"></div>
+    <div id="site-border-right"></div>
+    <div id="site-border-top"></div>
+    <div id="site-border-bottom"></div>
+    <header>
+        <nav class="navbar  navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-</html>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li></li>
+                        <li><a href="{% url 'home' %}" title="" style="color: white; font-size: xx-large;">Home</a><br>
+                        </li>
+                        <li><a href="{% url 'register' %}" title=""
+                                style="color: white; font-size: xx-large;">Register</a><br>
+                        </li>
+                        <li><a href="{% url 'login' %}" title=""
+                                style="color: white; font-size: xx-large;">Login</a><br>
+                        </li>
+                        <!-- <li><a href="#" title="" style="color: white; font-size: xx-large;">About</a></li>
+                            <li><a href="#" title="" style="color: white; font-size: xx-large;">Contact Us</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="hero-full-container background-image-container white-text-container"
+        style="background-image: url('static/images/HD-Library-Wallpaper.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="hero-full-wrapper">
+                        <div class="text-content">
+                            <h1>Welcome,<br>
+                                <span id="typed-strings">
+                                    <span>This is Minerva</span>
+                                    <span>File Hosting platform</span>
+                                    <span>Provided for all AAiT Students</span>
+                                </span>
+                                <span id="typed"></span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            type();
+            movingBackgroundImage();
+        });
+    </script>
+
+    {% endblock %}

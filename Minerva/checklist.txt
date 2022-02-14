@@ -1,0 +1,14 @@
+video thumbnail           Solution = I can rename the file in the upload field and also rename the actual thing, which will make it work.
+tabbed view of the books data type or the video data type.              FINISHED
+register page linking
+making all the pages simmilar.
+deleting the .lock files.
+deleting method needs to delete the actual files.
+if possible custom download, which will enable the user to choose where to save the file.
+materials need to lead to the material page.
+courses need to be filled/ persisted.
+update user needs to be done.
+download needs to be post and it needs to go into download page file.
+userprofile page.
+finish linking and finalizing register page, userprofile page, update page.
+NAV-BAR NEEDS TO BE LINKED AND THE SAME FOR ALL.
