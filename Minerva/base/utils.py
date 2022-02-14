@@ -1,5 +1,4 @@
-from matplotlib.image import thumbnail
-from preview_generator.manager import PreviewManager
+# from preview_generator.manager import PreviewManager
 from thumbnail import generate_thumbnail
 import os
 from pathlib import Path
