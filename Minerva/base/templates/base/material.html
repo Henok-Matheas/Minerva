@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/ho.css' %}">
     <link rel="stylesheet" href="{% static 'css/star.css' %}">
+    
+
 </head>
 <body>
     <p>{{material.host}}</p>
@@ -16,93 +18,96 @@
     <p>{{material.author}}</p>
     <p>{{material.description}}</p>
     <p>{{material.course}}</p>
-    
+    <p>{{material.rating}} {{reviews|length}} </p>
+            
             <form action="" method="post">
               {% csrf_token %} 
-              {{ form.review }}
+              {{form.review}}
                <fieldset class="clasificacion">
-                    <input id="radio1" type="radio" name="rating" value="5"><!--
+                    <input id="radio1" type="radio" name="rating" value="5" {%if form.rating.value|default_if_none:0 == 5 %}checked{%endif%}><!--
                    --><label for="radio1">&#9733;</label><!--
-                   --><input id="radio2" type="radio" name="rating" value="4"><!--
+                   --><input id="radio2" type="radio" name="rating" value="4" {%if form.rating.value|default_if_none:0 == 4 %}checked{%endif%}><!--
                    --><label for="radio2">&#9733;</label><!--
-                   --><input id="radio3" type="radio" name="rating" value="3"><!--
+                   --><input id="radio3" type="radio" name="rating" value="3" {%if form.rating.value|default_if_none:0 == 3 %}checked{%endif%}><!--
                    --><label for="radio3">&#9733;</label><!--
-                   --><input id="radio4" type="radio" name="rating" value="2"><!--
+                   --><input id="radio4" type="radio" name="rating" value="2" {%if form.rating.value|default_if_none:0 == 2 %}checked{%endif%}><!--
                    --><label for="radio4">&#9733;</label><!--
-                   --><input id="radio5" type="radio" name="rating" value="1"><!--
+                   --><input id="radio5" type="radio" name="rating" value="1" {%if form.rating.value|default_if_none:0 == 1 %}checked{%endif%}><!--
                    --><label for="radio5">&#9733;</label>
                 </fieldset>
+                
                 
        
                 <button type="submit">submit</button>
         
             </form>
-            
-        
-            <div class="container">
-                <div class="inner">
-                  <div class="rating">
+              <div class="container">
+
+                <div class="inner row">
+                  <div class="rating col-6">
                     <span class="rating-num">4.0</span>
-                    <div class="Stars" style="--rating: 4.5;" aria-label="Rating of this product is 2.3 out of 5.">
-        
-        
+                  <div class="Stars w-25" style="--rating: 5; width: 100px;" aria-label="Rating of this product is 2.3 out of 5."></div>
+               
                     <div class="rating-users">
                       <i class="icon-user"></i> 1,014,004 total
                     </div>
                   </div>
                   
-                  <div class="histo">
+                  <div class="histo col-6">
                     <div class="five histo-rate">
                       <span class="histo-star">
-                        <i class="active icon-star"></i> 5           </span>
-                      <span class="bar-block">
-                        <span id="bar-five" class="bar">
-                          <span>566,784</span>&nbsp;
+                        <i class="active icon-star"></i> 5 stars          </span>
+                      <span class="bar-block" style="max-width: 200px;">
+                        {% load mathfilters %}
+                        <span id="bar-five" class="bar" style="width:{{ ratings.2 }}%">
+                          <span>{{ratings.2}}</span>&nbsp;
                         </span> 
                       </span>
                     </div>
                     
                     <div class="four histo-rate">
                       <span class="histo-star">
-                        <i class="active icon-star"></i> 4           </span>
+                        <i class="active icon-star"></i> 4 stars          </span>
                       <span class="bar-block">
                         <span id="bar-four" class="bar">
-                          <span>171,298</span>&nbsp;
+                          <span>{{ratings.1}}</span>&nbsp;
                         </span> 
                       </span>
                     </div> 
                     
                     <div class="three histo-rate">
                       <span class="histo-star">
-                        <i class="active icon-star"></i> 3           </span>
+                        <i class="active icon-star"></i> 3 stars         </span>
                       <span class="bar-block">
                         <span id="bar-three" class="bar">
-                          <span>94,940</span>&nbsp;
+                          <span>{{ratings.2}}</span>&nbsp;
                         </span> 
                       </span>
                     </div>
                     
                     <div class="two histo-rate">
                       <span class="histo-star">
-                        <i class="active icon-star"></i> 2           </span>
+                        <i class="active icon-star"></i> 2 stars          </span>
                       <span class="bar-block">
                         <span id="bar-two" class="bar">
-                          <span>44,525</span>&nbsp;
+                          <span>{{ratings.3}}</span>&nbsp;
                         </span> 
                       </span>
                     </div>
                     
                     <div class="one histo-rate">
                       <span class="histo-star">
-                        <i class="active icon-star"></i> 1           </span>
+                        <i class="active icon-star"></i> 1 star         </span>
                       <span class="bar-block">
-                        <span id="bar-one" class="bar" style="width: 50%;">
-                          <span>136,457</span>&nbsp;
+                        <span id="bar-one" class="bar" >
+                          
+                          <span>{{ratings.4}}</span>&nbsp;
                         </span> 
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
+              
 </body>
 </html>

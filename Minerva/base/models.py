@@ -85,7 +85,7 @@ class Material(models.Model):
     thumbnail = models.ImageField(upload_to = "thumbnails",null = True)
     file = models.FileField(upload_to = "files",null = True)
     type = models.CharField(max_length=50)
-    rating = models.IntegerField(null = True)
+    rating = models.IntegerField(default=0)
 
     def addRating(self,rating):
         self.rating += rating
@@ -103,7 +103,7 @@ class Material(models.Model):
 
 
 class Review(models.Model):
-    host = models.ForeignKey(User, on_delete = models.CASCADE, null=False)
+    host = models.ForeignKey(User, on_delete = models.CASCADE, null=False,unique=True)
     material = models.ForeignKey(Material, on_delete = models.CASCADE, null=True, related_name='reviews')
     rating = models.IntegerField()
     review = models.TextField()

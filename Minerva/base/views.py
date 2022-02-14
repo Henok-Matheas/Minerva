@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models.query_utils import Q
+from django.db.models import F
 from  .forms import *
 from .models import *
 from .utils import *
@@ -18,6 +20,18 @@ def user(request):
     # materials = Material.objects.get(school = user.school, year = user.year, semester = user.semester).order_by("rating")
     # return render(request, "base/user.html",{"materials": materials})
 
+def search(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    q = q.split()
+
+    materials = Material.objects.filter( 
+        Q(course__name__icontains__in = q) |
+        Q(material__name__icontains = q) |
+        Q(material__author__icontains = q)
+    )
+    context = {"mateials":materials}
+
+    return render(request, 'base/search.html', context)
 def loginPage(request):
     page = "login"
 
@@ -68,16 +82,46 @@ def registerPage(request):
 def material(request, pk):
     material = Material.objects.get(id = pk)
     reviews = material.reviews.all()
-    form = ReviewForm()
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            form.instance.host = request.user
-            form.instance.material = material
-            form.save()
-            return redirect('home')
+    ratings = [0,0,0,0,0]
+    
+    for review in reviews:
+        ratings[review.rating-1] += 1
+        
 
-    context = {'material': material, 'form': form, 'reviews':reviews}
+    form = None
+    user = request.user
+    try:
+        review = material.reviews.get(host = user)
+        form = ReviewForm(instance=review)
+        if request.method == 'POST':
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                review.review = form.instance.review
+                ratechange = form.instance.rating - review.rating
+                review.rating = form.instance.rating
+                
+                material.rating = F('rating') + ratechange
+                review.save()
+                material.save()
+
+                return redirect('home')
+        
+    except:
+        form = ReviewForm()
+        if request.method == 'POST':
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                form.instance.host = request.user
+                form.instance.material = material
+                material.rating = F('rating') + form.instance.rating
+                form.save()
+                material.save()
+
+                return redirect('home')
+
+    
+
+    context = {'material': material, 'form': form, 'reviews':reviews, 'ratings':ratings}
     return render(request, 'base/material.html', context)
 
 # @login_required(login_url="/login")
@@ -97,7 +141,7 @@ def upload(request):
                 type = file_type,
             )
             matrl = Material.objects.get(id = mater.id)
-            matrl.thumbnail = thumbnailer(mater.file)
+            
             matrl.type = "video"
             return HttpResponse(matrl.type)
             materl = Material.objects.get(id = material.id)
