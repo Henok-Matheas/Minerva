@@ -1,12 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/search_page.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <title>Search Results</title>
 </head>
+
 <body>
-    
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="search-result-box card-box">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <div class="pt-3 pb-4">
+                                    <form action="{% url 'search' %}" method="GET">
+                                        <!-- <div class="input-group"> -->
+                                        <input type="text" id="" name="q" class="form-control" placeholder="search">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary"><i
+                                                    class="fa fa-search mr-1"></i> Search</button>
+                                        </div>
+                                        <!-- </div> -->
+                                    </form>
+                                    <div class="mt-4 text-center">
+                                        <h4>Search Results: </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        <ul class="nav nav-tabs tabs-bordered">
+                            <li class="nav-item"><a href="{% url 'search' %}?q={{query}}&type={{'book'}}"
+                                    data-toggle="tab" aria-expanded="true" class="nav-link active">Books <span
+                                        class="badge badge-success ml-1">325</span></a>
+                            </li>
+                            <li class="nav-item"><a href="{% url 'search' %}?q={{query}}&type={{'video'}}"
+                                    data-toggle="tab" aria-expanded="false" class="nav-link">Videos <span
+                                        class="badge badge-danger ml-1">89</span></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home">
+                                {% for material in materials %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a href="{% url 'material' material.id %}"><img src="{{material.thumbnail.url}}"
+                                                alt="" width="200rem" height="170rem"></a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="search-item">
+                                            <h4 class="mb-1"><a
+                                                    href="{% url 'material' material.id %}">{{material.name}}</a></h4>
+                                            <div class="font-13 text-success mb-3">Author: {{material.name}}</div>
+                                            <p class="mb-0 text-muted"> <strong>Description</strong>
+                                                <br>{{material.description}}
+                                            </p>
+                                            <a href="{{material.file.url}}" download>
+                                                <div style="text-align:right;"><button type="button"
+                                                        class="btn btn-outline-secondary"
+                                                        value="Download">Download</button>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- end Users tab -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    </div>
+    <!-- container -->
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
+
 </html>

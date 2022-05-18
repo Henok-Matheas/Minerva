@@ -1,0 +1,99 @@
+<!-- <div id="site-border-left"></div>
+    <div id="site-border-right"></div>
+    <div id="site-border-top"></div>
+    <div id="site-border-bottom"></div> -->
+{% load static %}
+
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<head>
+  <link rel="stylesheet " href="{% static 'styles/bootstrap.min.css' %}">
+  <link href="{% static 'styles/main_3f6952e4.css' %}" rel="stylesheet">
+</head>
+<header>
+  {% include 'header.html' %}
+</header>
+
+<div class="section-container">
+  <!-- <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./images/work001-04.jpg')"> -->
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="username" value="{{user.username}}">
+      <input type="hidden" name="password1" value="{{user.password}}">
+      <input type="hidden" name="password2" value="{{user.password}}">
+      <div class="template-example">
+        <h3>Enter your</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <label for="name">First Name:</label>
+              <input type="text" class="form-control" id="name" name="first_name" value="{{user.first_name}}" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <label for="name">Last Name:</label>
+              <input type="text" class="form-control" id="name" name="last_name" value="{{user.last_name}}" />
+            </div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group ">
+              <label>School:</label>
+              <select class="form-control" name="school">
+                <option value="{{user.school.id}}" selected>{{user.school}}</option>
+                {% for school in schools %}
+                <option value="{{school.id}}">{{school}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <label>Year:</label>
+              <select class="form-control" name="year">
+                <option value="{{user.year.id}}" selected>{{user.year}}</option>
+                {% for year in years %}
+                <option value="{{year.id}}">{{year}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <label>Semester:</label>
+              <select class="form-control" name="semester">
+                <option value="{{user.semester.id}}" selected>{{user.semester}}</option>
+                {% for semester in semesters %}
+                <option value="{{semester.id}}">{{semester}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="input-group">
+          <label for="update"></label>
+          <input type="submit" class="btn btn-primary btn-lg" id="update" name=" submit " value="Update" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="{% static 'js/main.70a66962.js' %}"></script>
+
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

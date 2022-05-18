@@ -1,10 +1,16 @@
-{% extends 'main.html' %}
-{% block content %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% load static %}
 
-<!-- <div id="site-border-left"></div>
-    <div id="site-border-right"></div>
-    <div id="site-border-top"></div>
-    <div id="site-border-bottom"></div> -->
+<head>
+    <!-- <link rel="stylesheet " href="{% static 'styles/bootstrap.min.css' %}"> -->
+    <link href="{% static 'styles/main_3f6952e4.css' %}" rel="stylesheet">
+</head>
 <header>
     <nav class="navbar  navbar-inverse">
         <div class="container">
@@ -20,22 +26,22 @@
 <div class="section-container">
     <!-- <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./images/work001-04.jpg')"> -->
     <div class="container">
-        <div class="template-example">
-            <h3>Enter your</h3>
-            <form>
-
+        <form method="POST">
+            {% csrf_token %}
+            <div class="template-example">
+                <h3>Enter your</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-group">
                             <label for="name">First Name:</label>
-                            <input type="text" class="form-control" id="name" name="firstname"
+                            <input type="text" class="form-control" id="name" name="first_name"
                                 placeholder="Given name" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-group">
                             <label for="name">Last Name:</label>
-                            <input type="text" class="form-control" id="name" name="lastname"
+                            <input type="text" class="form-control" id="name" name="last_name"
                                 placeholder="Father's name" />
                         </div>
                     </div>
@@ -54,12 +60,9 @@
                         <div class="input-group ">
                             <label>School:</label>
                             <select class="form-control" name="school">
-                                <option>Software</option>
-                                <option>Mechanical</option>
-                                <option>Electrical</option>
-                                <option>Civil</option>
-                                <option>Biomedical</option>
-                                <option>Chemical</option>
+                                {% for school in schools %}
+                                <option value="{{school.id}}">{{school}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -67,11 +70,9 @@
                         <div class="input-group">
                             <label>Year:</label>
                             <select class="form-control" name="year">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                {% for year in years %}
+                                <option value="{{year.id}}">{{year}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -79,8 +80,9 @@
                         <div class="input-group">
                             <label>Semester:</label>
                             <select class="form-control" name="semester">
-                                <option>1st</option>
-                                <option>2nd</option>
+                                {% for semester in semesters %}
+                                <option value="{{semester.id}}">{{semester}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -96,11 +98,13 @@
                 <br>
                 <div class="input-group">
                     <label for="signup"></label>
-                    <input type="submit" class="btn btn-primary btn-lg" id="signup" action="#" name=" submit "
-                        value="Sign Up " />
+                    <input type="submit" class="btn btn-primary btn-lg" id="signup" name=" submit " value="Sign Up " />
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
-{% endblock %}
+<script src="{% static 'js/main.70a66962.js' %}"></script>
+
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

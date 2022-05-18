@@ -1,14 +1,47 @@
-video thumbnail           Solution = I can rename the file in the upload field and also rename the actual thing, which will make it work.
+video thumbnail          NOT DONE  Solution = I can rename the file in the upload field and also rename the actual thing, which will make it work.
 tabbed view of the books data type or the video data type.              FINISHED
-register page linking
-making all the pages simmilar.
-deleting the .lock files.
-deleting method needs to delete the actual files.
-if possible custom download, which will enable the user to choose where to save the file.
-materials need to lead to the material page.
-courses need to be filled/ persisted.
-update user needs to be done.
-download needs to be post and it needs to go into download page file.
-userprofile page.
-finish linking and finalizing register page, userprofile page, update page.
-NAV-BAR NEEDS TO BE LINKED AND THE SAME FOR ALL.
+register page linking             Finished
+making all the pages simmilar.       Ignored
+deleting the .lock files.            Ignored
+deleting method needs to delete the actual files.           Ignored
+if possible custom download, which will enable the user to choose where to save the file.        Ignored
+materials need to lead to the material page.           Finished
+courses need to be filled/ persisted.           NOT DONE       
+update user needs to be done.                       Finished    
+download needs to be post and it needs to go into download page file.                Ignored
+userprofile page.                Finished
+finish linking and finalizing register page, userprofile page, update page.          Finished
+NAV-BAR NEEDS TO BE LINKED AND THE SAME FOR ALL.         
+
+
+default thumbnails for books, videos and other files.
+
+Nav_bar needs to be done.
+
+
+change password functionality if possible
+
+
+linking of all the pages.
+finalize the html for the views, polish them.
+
+search page and functionality.
+
+
+material download and preview buttons need to be deleted and the linking should only be on the thumbnail.
+check if the thumbnails work for videos, and others.
+
+header and search bar.
+
+the navigation menu and it's links
+
+course persistence.
+
+material page's review needs to be finished.
+
+material delete functionality.
+
+hamburger functionality for the header.
+
+
+most downloaded functionality, and adding the download number.

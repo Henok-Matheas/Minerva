@@ -1,12 +1,7 @@
-{% extends "main.html" %}
-
-{% block content %}
+{% load static %}
+<link href="{% static 'styles/main_3f6952e4.css' %}" rel="stylesheet">
 
 <body class="minimal">
-    <div id="site-border-left"></div>
-    <div id="site-border-right"></div>
-    <div id="site-border-top"></div>
-    <div id="site-border-bottom"></div>
     <header>
         <nav class="navbar  navbar-fixed-top navbar-inverse">
             <div class="container">
@@ -29,12 +24,10 @@
                         <li><a href="{% url 'login' %}" title=""
                                 style="color: white; font-size: xx-large;">Login</a><br>
                         </li>
-                        <!-- <li><a href="#" title="" style="color: white; font-size: xx-large;">About</a></li>
-                            <li><a href="#" title="" style="color: white; font-size: xx-large;">Contact Us</a></li> -->
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
     </header>
     <div class="hero-full-container background-image-container white-text-container"
         style="background-image: url('static/images/HD-Library-Wallpaper.jpg')">
@@ -65,4 +58,4 @@
         });
     </script>
 
-    {% endblock %}
+    <script src="{% static 'js/main.70a66962.js' %}"></script>

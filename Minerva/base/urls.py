@@ -5,16 +5,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-     path("",views.home, name = "home"),
-     path("user/",views.userPage, name = "user"),
-     path("login/", views.loginPage, name="login"),
-     path("logout/", views.logoutUser, name="logout"),
-     path("register/", views.registerPage, name="register"),
-     path("upload/", views.upload, name="upload"),
-     path("delete_file/<str:pk>", views.deleteFile, name="delete_file"),
-     path("materials/<str:pk>", views.material, name="material") 
+    path("", views.home, name="home"),
+    path("user/", views.userPage, name="user"),
+    path("login/", views.loginPage, name="login"),
+    path("logout/", views.logoutUser, name="logout"),
+    path("register/", views.registerPage, name="register"),
+    path("upload/", views.upload, name="upload"),
+    path("delete_file/<str:pk>", views.deleteFile, name="delete_file"),
+    path("materials/<str:pk>", views.material, name="material"),
+    path("user-page/", views.userProfile, name="user-profile"),
+    path("update-user/", views.updateUser, name="update-user"),
+    path("search/", views.search, name="search"),
 ]
 
 if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

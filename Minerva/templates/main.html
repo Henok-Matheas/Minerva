@@ -8,24 +8,28 @@
     <link rel="stylesheet " href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css "
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p " crossorigin="anonymous " />
     <link rel="stylesheet " href="{% static 'styles/bootstrap.min.css' %}">
-    <link href="{% static 'styles/main.3f6952e4.css' %}" rel="stylesheet">
+    <link href="{% static 'styles/main_3f6952e4.css' %}" rel="stylesheet">
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 <body>
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    <header>
+        {% include 'header.html' %}
+    </header>
     {% block content %}
 
     {% endblock content %}
     <br><br>
     {% include 'footer.html' %}
+
 
 
     <script src="{% static 'js/carousel.js' %}"></script>

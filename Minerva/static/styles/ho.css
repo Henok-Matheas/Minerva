@@ -1,0 +1,144 @@
+@charset "UTF-8";
+:root {
+  --star-size: 40px;
+  --star-color: #fff;
+  --star-background: #fc0;
+}
+
+.Stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+.Starsuser{
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(10px);
+  font-family: Times;
+  line-height: 1;
+}
+.Stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.Starsuser::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body {
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.comments {
+    margin-top: 5%;
+    margin-left: 5px
+}
+.hr{
+    color: black;
+}
+
+.comment {
+    border: 1px solid rgb(188, 192, 192);
+    background-color: rgb(240, 243, 247);
+    float: left;
+    margin-top: 1%;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px
+}
+
+.comment h4,
+.comment span,
+.darker h4,
+.darker span {
+    display: inline
+}
+
+.comment p,
+.comment span,
+.darker p,
+.darker span {
+    color: rgb(58, 57, 57)
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 20px;
+  width: 450px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 6px;
+  -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
+}
+
+.comment-box {
+  padding: 5px
+}
+
+.comment-area textarea {
+  resize: none;
+  border: 1px solid #ad9f9f
+}
+
+
+.btn{
+  width: 100px;
+  margin-top: 5px;
+}
+.col-4.reviews{
+  position:sticky; 
+  top: 10px;
+  
+}
+.commentss{
+  float: left;
+}
+progress {
+  border: none;
+  background: rgb(247, 249, 250);
+  height: 25px;
+}
+
+progress.five::-webkit-progress-value  {
+  background: #9FC05A;
+ 
+}
+progress.five::-webkit-progress-bar  {
+  background: #eff0ed;
+ 
+}
+progress.four::-moz-progress-bar {
+  color: #eee;
+  background: #ADD633;
+}
+progress.three::-moz-progress-bar {
+  background: #FFD834;
+}
+progress.two::-moz-progress-bar {
+  background: #FFB234;
+}
+progress.one::-moz-progress-bar {
+  background: #FF8B5A;
+}

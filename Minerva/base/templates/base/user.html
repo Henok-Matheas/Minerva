@@ -41,24 +41,15 @@
                         {% for material in most_downloaded %}
                         <div class="item">
                             <div class="pad15">
-                                <a href="#">
-                                    <div id="content">
+
+                                <div id="content">
+                                    <a href="{% url 'material' material.id %}">
                                         <img src="{{material.thumbnail.url}}" alt="file image" width="150px">
-                                        <br>
-                                        <p class="lead">{{material.name}}</p>
-                                        <p>Author: &nbsp; {{material.author}}</p>
-                                        <p>{{material.}}</p>
-                                    </div>
-                                </a>
-
-
-                                <div class="d-grid gap-2 d-md-block">
-                                    <a href="{{material.file.url}}" download></a>
-                                    <button class="btn-sm btn-primary" type="button">Download</button>
                                     </a>
-                                    <a href="{{material.file.url}}"></a>
-                                    <button class="btn-sm btn-primary" type="button">preview</button>
-                                    </a>
+                                    <br>
+                                    <p class="lead">{{material.name}}</p>
+                                    <p>Author: &nbsp; {{material.author}}</p>
+                                    <p>{{material.}}</p>
                                 </div>
                             </div>
                         </div>
@@ -79,27 +70,17 @@
                     <div class="MultiCarousel" data-items="2,3,4,5" data-slide="1" id="MultiCarousel"
                         data-interval="1000">
                         <div class="MultiCarousel-inner">
-                            {% for material in most_downloaded %}
+                            {% for material in materials %}
                             <div class="item">
                                 <div class="pad15">
-                                    <a href="#">
-                                        <div id="content">
+                                    <div id="content">
+                                        <a href="{% url 'material' material.id %}">
                                             <img src="{{material.thumbnail.url}}" alt="file image" width="150px">
-                                            <br>
-                                            <p class="lead">{{material.name}}</p>
-                                            <p>Author: &nbsp; {{material.author}}</p>
-                                            <p>{{material.}}</p>
-                                        </div>
-                                    </a>
-
-
-                                    <div class="d-grid gap-2 d-md-block">
-                                        <a href="{{material.file.url}}" download></a>
-                                        <button class="btn-sm btn-primary" type="button">Download</button>
                                         </a>
-                                        <a href="{{material.file.url}}"></a>
-                                        <button class="btn-sm btn-primary" type="button">preview</button>
-                                        </a>
+                                        <br>
+                                        <p class="lead">{{material.name}}</p>
+                                        <p>Author: &nbsp; {{material.author}}</p>
+                                        <p>{{material.}}</p>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,99 @@
+.show{
+    transform: translateX(0);
+}
+.hide{
+    transform: translateX(-100%);
+}
+.displayNone{
+    display: none;
+}
+.display{
+    display: block;
+}
+nav{
+    height: 125px;
+    display: flex;
+    justify-content: space-between;
+    background-color:lavender;
+}
+nav h1{
+    margin-right: 40px;
+}
+nav img{
+    height: 30%;
+}
+div#mainDropdown{
+    height: 83vh;
+    background-color: darkgray;
+    color: white;
+    width: 20em;
+    position: absolute;
+}
+div#mainDropdown li a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+div#mainDropdown ul{
+    list-style: none;
+}
+#subDropdownButton{
+    cursor:pointer;
+}
+nav img{
+    margin-left: 0.5em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+nav div{
+    margin: auto 0 auto 0;
+}
+nav form{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 10px;
+}
+nav form input{
+    padding: 5px;
+    height: 100%;
+    min-width: 60px;
+}
+nav div.upload-and-profile{
+    display: flex;
+    height: 40%;
+}
+nav div.upload-and-profile img{
+    width: 70px;
+    height: auto;
+}
+nav div.header-and-search{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+nav *{
+    margin: auto 0 auto 0;
+}
+header{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    margin:0;
+    padding: 0;
+    z-index: 2;
+}
+main{
+    position: relative;
+    top: 100px;
+}
+.container{
+    margin-top:5%;
+  }
+  /* Style to create scroll bar in dropdown */ 
+  .scrollable-dropdown{
+      height: auto;
+      max-height:320px;  /* Increase / Decrease value as per your need */
+      overflow-x: hidden;
+  }

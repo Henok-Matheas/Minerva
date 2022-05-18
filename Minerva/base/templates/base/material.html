@@ -1,113 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/ho.css' %}">
-    <link rel="stylesheet" href="{% static 'css/star.css' %}">
-    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+  <script src="{% static 'js/bar.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'styles/ho.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/star.css' %}">
+
 
 </head>
-<body>
-    <p>{{material.host}}</p>
-    <p>{{material.name}}</p>
-    <p>{{material.author}}</p>
-    <p>{{material.description}}</p>
-    <p>{{material.course}}</p>
-    <p>{{material.rating}} {{reviews|length}} </p>
-            
-            <form action="" method="post">
-              {% csrf_token %} 
-              {{form.review}}
-               <fieldset class="clasificacion">
-                    <input id="radio1" type="radio" name="rating" value="5" {%if form.rating.value|default_if_none:0 == 5 %}checked{%endif%}><!--
-                   --><label for="radio1">&#9733;</label><!--
-                   --><input id="radio2" type="radio" name="rating" value="4" {%if form.rating.value|default_if_none:0 == 4 %}checked{%endif%}><!--
-                   --><label for="radio2">&#9733;</label><!--
-                   --><input id="radio3" type="radio" name="rating" value="3" {%if form.rating.value|default_if_none:0 == 3 %}checked{%endif%}><!--
-                   --><label for="radio3">&#9733;</label><!--
-                   --><input id="radio4" type="radio" name="rating" value="2" {%if form.rating.value|default_if_none:0 == 2 %}checked{%endif%}><!--
-                   --><label for="radio4">&#9733;</label><!--
-                   --><input id="radio5" type="radio" name="rating" value="1" {%if form.rating.value|default_if_none:0 == 1 %}checked{%endif%}><!--
-                   --><label for="radio5">&#9733;</label>
-                </fieldset>
-                
-                
-       
-                <button type="submit">submit</button>
-        
-            </form>
-              <div class="container">
 
-                <div class="inner row">
-                  <div class="rating col-6">
-                    <span class="rating-num">4.0</span>
-                  <div class="Stars w-25" style="--rating: 5; width: 100px;" aria-label="Rating of this product is 2.3 out of 5."></div>
-               
-                    <div class="rating-users">
-                      <i class="icon-user"></i> 1,014,004 total
-                    </div>
-                  </div>
-                  
-                  <div class="histo col-6">
-                    <div class="five histo-rate">
-                      <span class="histo-star">
-                        <i class="active icon-star"></i> 5 stars          </span>
-                      <span class="bar-block" style="max-width: 200px;">
-                        {% load mathfilters %}
-                        <span id="bar-five" class="bar" style="width:{{ ratings.2 }}%">
-                          <span>{{ratings.2}}</span>&nbsp;
-                        </span> 
-                      </span>
-                    </div>
-                    
-                    <div class="four histo-rate">
-                      <span class="histo-star">
-                        <i class="active icon-star"></i> 4 stars          </span>
-                      <span class="bar-block">
-                        <span id="bar-four" class="bar">
-                          <span>{{ratings.1}}</span>&nbsp;
-                        </span> 
-                      </span>
-                    </div> 
-                    
-                    <div class="three histo-rate">
-                      <span class="histo-star">
-                        <i class="active icon-star"></i> 3 stars         </span>
-                      <span class="bar-block">
-                        <span id="bar-three" class="bar">
-                          <span>{{ratings.2}}</span>&nbsp;
-                        </span> 
-                      </span>
-                    </div>
-                    
-                    <div class="two histo-rate">
-                      <span class="histo-star">
-                        <i class="active icon-star"></i> 2 stars          </span>
-                      <span class="bar-block">
-                        <span id="bar-two" class="bar">
-                          <span>{{ratings.3}}</span>&nbsp;
-                        </span> 
-                      </span>
-                    </div>
-                    
-                    <div class="one histo-rate">
-                      <span class="histo-star">
-                        <i class="active icon-star"></i> 1 star         </span>
-                      <span class="bar-block">
-                        <span id="bar-one" class="bar" >
-                          
-                          <span>{{ratings.4}}</span>&nbsp;
-                        </span> 
-                      </span>
-                    </div>
-                  </div>
-                </div>
+<body>
+  <main class="bg-light">
+    <div class="row d-flex justify-content-center mt-4">
+      <div class="col-5">
+
+        <div class="mb-3">
+          <div class="row g-0">
+            <div class="col-md-5">
+              <img src="{{material.thumbnail.url}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="card-title">{{material.name}}</h5>
+                <h6>Author: {{material.author}}</h6>
+                <p class="card-text">{{material.description}}</p>
+                <p class="card-text">Course: {{material.course}}</p>
+                <p class="card-text"><small class="text-muted">File Format: {{material.type}}</small></p>
               </div>
-              
+            </div>
+          </div>
+        </div>
+        <a href="{{material.file.url}}" class="btn btn-primary " download=>Download</a>
+        <a href="{{material.file.url}}" class="btn btn-success">Preview</a>
+        <div class="row">
+          <h3 class="mt-5">Comments</h3>
+          <hr class="horizontal">
+          {% for review in reviews %}
+          <div class="comment mt-4 text-justify float-left col-12">
+            <h4>{{review.host.first_name}}</h4> <span> &nbsp;{{review.rating}}<div class="Starsuser"
+                style="--rating: {{review.rating}};" aria-label="Rating of this product is {{review.rating}} out of 5.">
+              </div>
+            </span>
+            <hr class="hr">
+            <p>{{review.review}}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+
+      <div class="col-4 reviews">
+        <div class="inner row">
+          <div class="rating col-md-6">
+            <span class="rating-num">{% widthratio material.rating material.count 1 %}</span>
+
+            <div class="Stars" style="--rating: {{material.rating}};"
+              aria-label="Rating of this product is 2.3 out of 5."></div>
+            <div class="rating-users">
+              <i class="icon-user"></i> {{material.count}} total
+            </div>
+          </div>
+
+          <div class="histo">
+            <div class="five histo-rate">
+              <span class="histo-star">
+                <i class="active icon-star"></i> 5 </span>
+              <span class="bar-block">
+                <span id="bar-five" class="bar">
+                  <span>{{ratings.4}}</span>&nbsp;
+                </span>
+              </span>
+            </div>
+
+            <div class="four histo-rate">
+              <span class="histo-star">
+                <i class="active icon-star"></i> 4 </span>
+              <span class="bar-block">
+                <span id="bar-four" class="bar">
+                  <span>{{ratings.3}}</span>&nbsp;
+                </span>
+              </span>
+            </div>
+
+            <div class="three histo-rate">
+              <span class="histo-star">
+                <i class="active icon-star"></i> 3 </span>
+              <span class="bar-block">
+                <span id="bar-three" class="bar">
+                  <span>{{ratings.2}}</span>&nbsp;
+                </span>
+              </span>
+
+
+
+            </div>
+
+            <div class="two histo-rate">
+              <span class="histo-star">
+                <i class="active icon-star"></i> 2 </span>
+              <span class="bar-block">
+                <span id="bar-two" class="bar">
+                  <span>{{ratings.1}}</span>&nbsp;
+                </span>
+              </span>
+            </div>
+
+            <div class="one histo-rate">
+              <span class="histo-star">
+                <i class="active icon-star"></i> 1 </span>
+              <span class="bar-block">
+                <span id="bar-one" class="bar">
+                  <span>{{ratings.0}}</span>&nbsp;
+                </span>
+              </span>
+            </div>
+          </div>
+          <hr class="m-3 w-75">
+          <div class="row mt-4">
+            <div class="col-10">
+              <div class="comment-box ml-2">
+                <h4>Your Review</h4>
+                {%if ureview != None %}
+
+                <div class="Starsuser" style="--rating: {{ureview.rating}};"
+                  aria-label="Rating of this product is 2.3 out of 5.">
+                </div>
+                {%if ureview.review == None %}
+                <textarea class="form-control" name="review" id="" cols="15" rows="5"
+                  placeholder="{{form.review.value}}"></textarea>
+                <button type="submit" class="btn btn-success btn-sm">Send</button>
+                {%else%}
+                <p>{{ureview.review}}</p>
+                {%endif%}
+
+                {%else%}
+                <form method="post">
+                  {% csrf_token %}
+                  <div class="clasificacion">
+                    <input id="radio1" type="radio" name="rating" value="5" {%if form.rating.value|default_if_none:0==5
+                      %}checked>
+                    <!--
+                                       --><label for="radio1">&#9733;</label>
+                    <!--
+                                       --><input id="radio2" type="radio" name="rating" value="4" {%if
+                      form.rating.value|default_if_none:0==4 %}checked>
+                    <!--
+                                       --><label for="radio2">&#9733;</label>
+                    <!--
+                                       --><input id="radio3" type="radio" name="rating" value="3" {%if
+                      form.rating.value|default_if_none:0==3 %}checked>
+                    <!--
+                                       --><label for="radio3">&#9733;</label>
+                    <!--
+                                       --><input id="radio4" type="radio" name="rating" value="2" {%if
+                      form.rating.value|default_if_none:0==2 %}checked>
+                    <!--
+                                       --><label for="radio4">&#9733;</label>
+                    <!--
+                                       --><input id="radio5" type="radio" name="rating" value="1" {%if
+                      form.rating.value|default_if_none:0==1 %}checked>
+                    <!--
+                                       --><label for="radio5">&#9733;</label>
+                  </div>
+                  <textarea class="form-control" name="review" id="" cols="15" rows="5"
+                    placeholder="{{form.review.value}}"></textarea>
+                  <button type="submit" class="btn btn-success btn-sm">Send</button>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+
+      </div>
+
+    </div>
+
+
+  </main>
+
+
 </body>
+
 </html>

@@ -5,6 +5,7 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ["rating", "review"]
+        exclude = ["review"]
   
 class MaterialForm(forms.ModelForm):
   
@@ -16,4 +17,4 @@ class MaterialForm(forms.ModelForm):
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ["username", "first_name", 'last_name', 'email', "school" , 'year', 'semester' , "password1", 'password2']
+        fields = ["username", "first_name", 'last_name', 'email', "password1", 'password2']

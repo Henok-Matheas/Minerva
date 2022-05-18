@@ -117,3 +117,11 @@ class Review(models.Model):
 
     def __str__(self):
         return self.review
+    
+    def delete(self):
+        material = self.material
+        if material:
+            material.rating = material.rating - self.rating
+            material.count -= 1
+            material.save()
+        return super(Review, self).delete()
